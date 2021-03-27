@@ -54,9 +54,12 @@ def CmdDelBookmark(bookmark: str) -> None:
 @Command('list', 'Prints a list of all bookmarks')
 def CmdListBookmarks() -> None:
     paths = LoadBookmarkConfig()
-    maxLength = max([len(bookmark) for bookmark in paths])
-    for bookmark, path in paths.items():
-        print(f'{bookmark.ljust(maxLength)} -> {path}')
+    if paths:
+        maxLength = max([len(bookmark) for bookmark in paths])
+        for bookmark, path in paths.items():
+            print(f'{bookmark.ljust(maxLength)} -> {path}')
+    else:
+        print('No bookmarks available yet')
 
 
 @Command('?', 'Prints a list of all commands')
