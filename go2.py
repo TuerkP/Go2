@@ -40,8 +40,11 @@ def WriteBookmarkConfig(config: Dict[str, str]) -> None:
 @Command('add', 'Adds a new bookmark', 'Usage: add <bookmark> <target>')
 def CmdAddBookmark(bookmark: str, targetPath: str) -> None:
     paths = LoadBookmarkConfig()
-    paths[bookmark] = targetPath
-    WriteBookmarkConfig(paths)
+    if Path(targetPath).exists():
+        paths[bookmark] =targetPath
+        WriteBookmarkConfig(paths)
+    else:
+        print(f'"{targetPath}" is not a valid path')
 
 
 @Command('del', 'Deletes a bookmark', 'Usage: del <bookmark>')
