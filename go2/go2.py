@@ -35,7 +35,7 @@ def LoadBookmarkConfig() -> Dict[str, str]:
 
 def WriteBookmarkConfig(config: Dict[str, str]) -> None:
     with open(CFG_FILE_PATH, 'w') as file:
-        file.write(json.dumps(config))
+        file.write(json.dumps(config, indent=2))
 
 
 @Command('add', 'Adds a new bookmark', 'Usage: add <bookmark> <target>')
