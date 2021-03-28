@@ -60,6 +60,15 @@ def CmdOpenCfg() -> None:
     os.system(f'start {CFG_FILE_PATH}')
 
 
+@Command('open', 'Opens the bookmark in the system file explorer', 'Usage: open <bookmark>')
+def CmdOpenBookmark(bookmark: str) -> None:
+    bookmarkConfig = LoadBookmarkConfig()
+    if bookmark in bookmarkConfig:
+        os.system(f'start {bookmarkConfig[bookmark]}')
+    else:
+        print(f'Unknown bookmark: {bookmark}')
+
+
 @Command('list', 'Prints a list of all bookmarks')
 def CmdListBookmarks() -> None:
     paths = LoadBookmarkConfig()
