@@ -95,7 +95,7 @@ def main():
     bookmarkConfig = LoadBookmarkConfig()
 
     if len(sys.argv) > 1:
-        if sys.argv[1] in bookmarkConfig.keys():
+        if sys.argv[1] in bookmarkConfig:
             GoTo(bookmarkConfig, sys.argv[1])
         else:
             ExecCommand()
