@@ -1,3 +1,4 @@
+import os
 import json
 import sys
 from pathlib import Path
@@ -52,6 +53,11 @@ def CmdDelBookmark(bookmark: str) -> None:
     paths = LoadBookmarkConfig()
     paths.pop(bookmark, None)
     WriteBookmarkConfig(paths)
+
+
+@Command('cfg', 'Opens the go2 configuration file')
+def CmdOpenCfg() -> None:
+    os.system(f'start {CFG_FILE_PATH}')
 
 
 @Command('list', 'Prints a list of all bookmarks')
