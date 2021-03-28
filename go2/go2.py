@@ -42,7 +42,7 @@ def WriteBookmarkConfig(config: Dict[str, str]) -> None:
 def CmdAddBookmark(bookmark: str, targetPath: str) -> None:
     paths = LoadBookmarkConfig()
     if Path(targetPath).exists():
-        paths[bookmark] =targetPath
+        paths[bookmark] = targetPath
         WriteBookmarkConfig(paths)
     else:
         print(f'"{targetPath}" is not a valid path')
