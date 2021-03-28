@@ -72,6 +72,15 @@ def CmdListCommands() -> None:
         print(f'{cmdInfo.cmd.ljust(maxLength + 10)}{cmdInfo.description}')
 
 
+def ExecCommand():
+    try:
+        COMMANDS[sys.argv[1]].callback(*sys.argv[2:])
+    except KeyError:
+        print(f'Unknown command: {sys.argv[1]}')
+    except TypeError:
+        print(COMMANDS[sys.argv[1]].usage)
+
+
 def GoTo(config: Dict[str, str], bookmark: str) -> None:
     print(config[bookmark])
 
@@ -83,12 +92,7 @@ def main():
         if sys.argv[1] in bookmarkConfig.keys():
             GoTo(bookmarkConfig, sys.argv[1])
         else:
-            try:
-                COMMANDS[sys.argv[1]].callback(*sys.argv[2:])
-            except KeyError:
-                print(f'Unknown command: {sys.argv[1]}')
-            except TypeError:
-                print(COMMANDS[sys.argv[1]].usage)
+            ExecCommand()
     else:
         print(f'Usage: go <bookmark> | <cmd> [<args>]')
 
